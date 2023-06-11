@@ -16,7 +16,7 @@
   <% end %>
 </div>
 <br>
-<% @books.group_by { |book| [book.year, book.month] }.sort_by { |(year, month), _| [year, month] }.each do |(year, month), books| %>
+<% @books.sort_by { |book| [book.year, book.month, book.day] }.group_by { |book| [book.year, book.month] }.each do |(year, month), books| %>
   <h2><%= "#{year}年#{month}月" %></h2>
   
   <table class="table table-striped">
