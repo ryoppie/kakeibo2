@@ -1,1 +1,90 @@
-<h1>新米夫婦のための家計簿</h1>
+<h1><%= link_to "金額を入力しよう!", root_path, class: "start-link" %></h1>
+<br>
+<div>
+  <%= link_to "新規登録", new_book_path, class: "btn btn-success" %>
+  <% (1..12).each do |month| %>
+    <%= link_to "#{month}月", books_by_month_path(year: @selected_year, month: month), class: "btn btn-primary", style: "margin-left: 5px;" %>
+  <% end %>
+</div>
+<br>
+<div>
+  <%= form_tag books_path, method: :get, class: "form-inline" do %>
+    <div class="form-group">
+  <%= label_tag "year", "年度" %>
+  <%= select_tag "year", options_for_select(@available_years, @selected_year), class: "form-control", onchange: "this.form.submit();" %>
+</div>
+  <% end %>
+</div>
+<br>
+<% @books.group_by { |book| [book.year, book.month] }.sort_by { |(year, month), _| [year, month] }.each do |(year, month), books| %>
+  <h2><%= "#{year}年#{month}月" %></h2>
+  
+  <table class="table table-striped">
+    <tr>
+      <th>年月日</th>
+      <th>区分</th>
+      <th>カテゴリ</th>
+      <th>金額</th>
+      <th>リンク</th>
+    </tr>
+    <% books.each do |book| %>
+      <tr>
+        <td><%= "#{book.year}年#{book.month}月#{book.day}日" %></td>
+        <td>
+          <% if book.expend == 1 %>
+            夫精算
+          <% elsif book.expend == 2 %>
+            妻精算
+          <% elsif book.expend == 3 %>
+            精算完了
+          <% else %>
+            未定義
+          <% end %>
+        </td>
+        <td>
+          <% if book.category.to_i == 1 %>
+            食費
+          <% elsif book.category.to_i == 2 %>
+            日用品
+          <% elsif book.category.to_i == 3 %>
+            家具・家電
+          <% elsif book.category.to_i == 4 %>
+            家賃・光熱費
+          <% else %>
+            未定義
+          <% end %>
+        </td>
+        <td><%= number_with_delimiter(book.amount, delimiter: ',') %>円</td>
+        <td>
+          <%= link_to "詳細", book_path(book), class: "btn btn-info" %>
+          <%= link_to "編集", edit_book_path(book.id, year: book.year, month: book.month), class: "btn btn-warning" %>
+          <%= link_to "削除", book_path(book), method: :delete, data: { confirm: '本当に削除しますか?' }, class: "btn btn-danger" %>
+        </td>
+      </tr>
+    <% end %>
+    <tr>
+      <td colspan="3"></td>
+      <td><strong>合計金額</strong></td>
+      <td><strong><%= number_with_delimiter(books.sum(&:amount), delimiter: ',') %>円</strong></td>
+    </tr>
+  </table>
+
+  <div style="float: left;">
+    <%= pie_chart books.group_by(&:category).transform_keys { |category| category_name(category) }.transform_values { |values| values.sum(&:amount) } %>
+  </div>
+
+  <div class="message-with-image">
+  <div class="message">
+    <% total_amount = @books.sum(&:amount) %>
+    <% if total_amount >= 100000 %>
+      合計金額が10万円以上です。<br>節約しましょう!
+    <% elsif total_amount >= 80000 %>
+      合計金額が8万円以上です。<br>注意しましょう。
+    <% else %>
+      合計金額は<%= number_with_delimiter(total_amount, delimiter: ',') %>円です。<br>その調子です!
+    <% end %>
+  </div>
+  <img src="/assets/pig.jpg" alt="節約のイメージ画像" width="300" height="300">
+</div>
+<% end %>
+

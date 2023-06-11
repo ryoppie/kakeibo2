@@ -1,0 +1,44 @@
+<h1>詳細情報</h1>
+
+<table class="table table-striped">
+  <tr>
+    <th>年月日</th>
+    <td><%= "#{@book.year}年#{@book.month}月#{@book.day}日" %></td>
+  </tr>
+  <tr>
+    <th>区分</th>
+    <td>
+      <% if @book.expend == 1 %>
+        夫精算
+      <% elsif @book.expend == 2 %>
+        妻精算
+      <% elsif @book.expend == 3 %>
+        精算完了
+      <% else %>
+        未定義
+      <% end %>
+    </td>
+  </tr>
+  <tr>
+    <th>カテゴリ</th>
+    <td>
+      <% if @book.category.to_i == 1 %>
+        食費
+      <% elsif @book.category.to_i == 2 %>
+        日用品
+      <% elsif @book.category.to_i == 3 %>
+        家具・家電
+      <% elsif @book.category.to_i == 4 %>
+        家賃・光熱費
+      <% else %>
+        未定義
+      <% end %>
+    </td>
+  </tr>
+  <tr>
+    <th>金額</th>
+    <td><%= "#{@book.amount}円" %></td>
+  </tr>
+</table>
+
+<%= link_to "戻る", books_path, class: "btn btn-secondary" %>

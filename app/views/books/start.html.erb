@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="/path/to/application.css">
+  <title>新米夫婦のためのシンプル家計簿</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      padding: 0;
+      background-image: url('/assets/22897576.jpg');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center top;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+    }
+
+    .title {
+      position: absolute;
+      top: 35%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      margin: 0;
+      white-space: nowrap; /* 改行を防止 */
+    }
+
+    .start-button {
+      padding: 12px 24px; /* パディングを調整してボタンのサイズを変更 */
+      font-size: 20px; /* フォントサイズを変更 */
+      position: absolute;
+      top: 50%;
+      left: calc(50% - 130px); /* 左側に50px移動 */
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="title">新米夫婦のためのシンプル家計簿</h1>
+    <%= link_to "さっそくはじめる", books_path(start: true), class: "btn btn-primary start-button" %>
+  </div>
+</body>
+</html>
