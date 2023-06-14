@@ -4,6 +4,23 @@ class BooksController < ApplicationController
   end
 
   def index
+    image_paths = [
+      "/assets/january.jpg",
+      "/assets/february.jpg",
+      "/assets/march.jpg",
+      "/assets/april.jpg",
+      "/assets/may.jpg",
+      "/assets/june.jpg",
+      "/assets/july.jpg",
+      "/assets/august.jpg",
+      "/assets/september.jpg",
+      "/assets/october.jpg",
+      "/assets/november.jpg",
+      "/assets/december.jpg"
+    ]
+    current_month = Time.current.month
+    @bg_image_path = image_paths[current_month - 1]
+
     @selected_year = params[:year] || Time.current.year
     month = params[:month] || Time.current.month
   
@@ -12,6 +29,8 @@ class BooksController < ApplicationController
     @total_amount = @books.sum(:amount)
   
     @available_years = Book.distinct.pluck(:year)
+
+    @bg_image_path = image_paths[month.to_i - 1] if month.present? && month.to_i.between?(1, 12)
   end
 
   def show
