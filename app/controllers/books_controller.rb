@@ -5,18 +5,18 @@ class BooksController < ApplicationController
 
   def index
     image_paths = [
-      "/assets/january.jpg",
-      "/assets/february.jpg",
-      "/assets/march.jpg",
-      "/assets/april.jpg",
-      "/assets/may.jpg",
-      "/assets/june.jpg",
-      "/assets/july.jpg",
-      "/assets/august.jpg",
-      "/assets/september.jpg",
-      "/assets/october.jpg",
-      "/assets/november.jpg",
-      "/assets/december.jpg"
+      "january.jpg",
+      "february.jpg",
+      "march.jpg",
+      "april.jpg",
+      "may.jpg",
+      "june.jpg",
+      "july.jpg",
+      "august.jpg",
+      "september.jpg",
+      "october.jpg",
+      "november.jpg",
+      "december.jpg"
     ]
     current_month = Time.current.month
     @bg_image_path = image_paths[current_month - 1]
