@@ -80,13 +80,16 @@
     <% total_amount = @books.sum(&:amount) %>
     <% if total_amount >= 100000 %>
       合計金額が10万円以上です。<br>節約しましょう!
-      <% image_path = "/assets/pig4.jpg" %>
+      <% image_path = asset_path('pig4.jpg') %>
+      <%# image_path = "/assets/pig4.jpg" %>
     <% elsif total_amount >= 80000 %>
       合計金額が8万円以上です。<br>注意しましょう。
-      <% image_path = "/assets/pig3.jpg" %>
+      <% image_path = asset_path('pig3.jpg') %>
+      <%# image_path = "/assets/pig3.jpg" %>
     <% else %>
       合計金額は<%= number_with_delimiter(total_amount, delimiter: ',') %>円です。<br>その調子です!
-    <% image_path = "/assets/pig.jpg" %>
+    <% image_path = asset_path('pig.jpg') %>
+    <%# image_path = "/assets/pig.jpg" %>
     <% end %>
   </div>
   <div style="clear: both;"></div> 
