@@ -50,11 +50,10 @@ https://docs.google.com/spreadsheets/d/1zUQOTKA4L67tJSsdA1f5q1RXBMleyKQojlx0BXdd
 
 ## トップページ〜一覧ページ
 会員登録・ログイン不要で一覧ページへ遷移できます。
-[![Image from Gyazo](https://i.gyazo.com/90e631353c1a21833cc0633982149955.gif)](https://gyazo.com/90e631353c1a21833cc0633982149955)
-
 <br>
 一覧ページに入力した家計簿データが表示され、年度,月ごとに表示されます。
-[![Image from Gyazo](https://i.gyazo.com/3a9c63837f537911546b423930d6627b.gif)](https://gyazo.com/3a9c63837f537911546b423930d6627b)
+
+[![Image from Gyazo](https://i.gyazo.com/90e631353c1a21833cc0633982149955.gif)](https://gyazo.com/90e631353c1a21833cc0633982149955)
 
 <br>
 
