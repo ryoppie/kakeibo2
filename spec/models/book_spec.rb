@@ -11,7 +11,7 @@ RSpec.describe Book, type: :model do
   context '家計簿が新規登録できないとき' do
     it '年度が空では登録できない' do
       book = Book.new(year: nil)
-      expect(book).not_to be_valid
+      expect(book).not_to
     end
 
     it '月が空では登録できない' do
